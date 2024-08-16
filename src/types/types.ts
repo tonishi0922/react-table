@@ -1,7 +1,7 @@
 interface Column {
   value: string;
   required?: boolean;
-  unique: boolean;
+  unique?: boolean;
   width: string | number;
 }
 
