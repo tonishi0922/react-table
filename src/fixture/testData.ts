@@ -1,15 +1,15 @@
 export const testColumns = [
-  { name: "name", required: true, unique: true, width: 180 },
-  { name: "x", required: true, unique: true, width: 100 },
-  { name: "y", required: true, unique: true, width: 100 },
-  { name: "color", required: true, unique: true, width: 180 },
+  { value: "name", required: true, unique: true, width: 180 },
+  { value: "x", required: true, unique: true, width: 100 },
+  { value: "y", required: true, unique: true, width: 100 },
+  { value: "color", required: true, unique: true, width: 180 },
 ];
 
 const testColumnsForType = [...testColumns] as const;
 
 export type Columns = typeof testColumnsForType;
 
-type ColumnNames = (typeof testColumns)[number]["name"];
+type ColumnNames = (typeof testColumns)[number]["value"];
 
 type DataItem = Record<ColumnNames, string | number>;
 
@@ -18,7 +18,6 @@ export type Data = DataItem[];
 export const testData: Data = [
   {
     name: "point_1",
-    k: "",
     x: 4.31,
     y: 0.95,
     color: "red",
