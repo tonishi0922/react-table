@@ -41,3 +41,12 @@ dist-ssr
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/yarn
+*storybook.log
+
+### StorybookJs ###
+# gitignore template for the Storybook, UI guide for front apps
+# website: https://storybook.js.org/
+
+storybook-static/
+
+# End of https://www.toptal.com/developers/gitignore/api/storybookjs
