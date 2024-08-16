@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { Flex, Box } from "@kuma-ui/core";
 import type { Columns } from "../types/types";
 
@@ -35,7 +36,7 @@ interface ColumnHeaderProps {
   /**
    * box編集時のイベントハンドラ
    */
-  onInputHandler?: (e: React.ChangeEvent<HTMLDivElement>) => void;
+  onInputHandler: Dispatch<SetStateAction<Columns>>;
 }
 const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
   const {
@@ -45,7 +46,7 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
     border = "1px solid gray",
     margin = 4,
     padding = 0,
-    onInputHandler = () => null,
+    onInputHandler,
   } = props;
   return (
     <>
@@ -62,7 +63,9 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
                 m={margin}
                 p={padding}
                 onInput={(e: React.ChangeEvent<HTMLDivElement>) => {
-                  onInputHandler(e);
+                  const tmpColums = [...columns];
+                  tmpColums[index]["value"] = e.target.innerHTML;
+                  onInputHandler(tmpColums);
                 }}
                 contentEditable={true}
                 suppressContentEditableWarning={true}
