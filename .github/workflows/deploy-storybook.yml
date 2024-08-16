@@ -23,6 +23,7 @@ jobs:
           name: storybook-static
           path: storybook-static
   deploy-storybook:
+    needs: build-storybook
     runs-on: ubuntu-latest
     steps:
       - name: Get build artifacts
