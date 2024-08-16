@@ -14,22 +14,22 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
-        uses: yarn
+        run: yarn
       - name: Run build storybook
-        uses: yarn build-storybook
+        run: yarn build-storybook
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: storybook-static
           path: storybook-static
-  # deploy-storybook:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Get build artifacts
-  #       uses: actions/download-artifact@v3
-  #       with:
-  #         name: storybook-static
-  #     - name: Output contents
-  #       run: ls
-  #     - name: Deploy
-  #       run: echo "Deploying..."
+  deploy-storybook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: storybook-static
+      - name: Output contents
+        run: ls
+      - name: Deploy
+        run: echo "Deploying..."
