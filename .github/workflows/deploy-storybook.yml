@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build-storybook:
     runs-on: ubuntu-latest
@@ -17,20 +18,21 @@ jobs:
         run: yarn
       - name: Run build storybook
         run: yarn build-storybook
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+      - name: Upload Documents
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: storybook-static
+          # 絶対パスを指定
           path: storybook-static
+
   deploy-storybook:
     needs: build-storybook
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Get build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: storybook-static
-      - name: Output contents
-        run: ls
-      - name: Deploy
-        run: echo "Deploying..."
+      - id: deployment
+        uses: actions/deploy-pages@v4
