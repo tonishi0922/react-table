@@ -4,7 +4,7 @@ import type { Columns, Data } from "../types/types";
 import ColumnHeader from "./ColumnHeader";
 import ColumnContents from "./ColumnContents";
 
-interface TableProps {
+export interface TableProps {
   /**
    * 1行目のカラムに関する型定義
    * value: 各カラムに出力される文字列
