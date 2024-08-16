@@ -1,8 +1,8 @@
 export const testColumns = [
-  { value: "name", required: true, unique: true, width: 180 },
-  { value: "x", required: true, unique: true, width: 100 },
-  { value: "y", required: true, unique: true, width: 100 },
-  { value: "color", required: true, unique: true, width: 180 },
+  { value: "id", required: true, unique: true, width: 180 },
+  { value: "name", required: true, unique: true, width: 100 },
+  { value: "age", required: true, unique: true, width: 100 },
+  { value: "department", required: true, unique: true, width: 180 },
 ];
 
 const testColumnsForType = [...testColumns] as const;
@@ -17,27 +17,33 @@ export type Data = DataItem[];
 
 export const testData: Data = [
   {
-    name: "point_1",
-    x: 4.31,
-    y: 0.95,
-    color: "red",
+    id: "878543",
+    name: "Tom Brown",
+    age: 38,
+    department: "営業",
   },
   {
-    name: "point_2",
-    x: 0.2,
-    y: 4.24,
-    color: "red",
+    id: "983985",
+    name: "山田 太郎",
+    age: 23,
+    department: "カスタマーサポート",
   },
   {
-    name: "point_3",
-    x: 9.78,
-    y: 9.43,
-    color: "red",
+    id: "095989",
+    name: "Jonny",
+    age: 50,
+    department: "生産管理",
   },
   {
-    name: "point_4",
-    x: 0.7,
-    y: 8.64,
-    color: "red",
+    id: "989982",
+    name: "佐藤花子",
+    age: 43,
+    department: "商品開発部",
+  },
+  {
+    id: "498083",
+    name: "Tim",
+    age: 36,
+    department: "営業",
   },
 ];
