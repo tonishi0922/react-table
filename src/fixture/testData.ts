@@ -1,28 +1,24 @@
-interface Column {
-  name: string;
-  required?: boolean;
-  unique?: boolean;
-  width?: string | number;
-}
-
-type Columns = Column[];
-
-export const columns = [
+export const testColumns = [
   { name: "name", required: true, unique: true, width: 180 },
   { name: "x", required: true, unique: true, width: 100 },
   { name: "y", required: true, unique: true, width: 100 },
   { name: "color", required: true, unique: true, width: 180 },
-] as const;
+];
 
-type ColumnNames = (typeof columns)[number]["name"];
+const testColumnsForType = [...testColumns] as const;
 
-type DataItem = Record<ColumnNames, string | number | boolean>;
+export type Columns = typeof testColumnsForType;
 
-type Data = DataItem[];
+type ColumnNames = (typeof testColumns)[number]["name"];
 
-export const data: Data = [
+type DataItem = Record<ColumnNames, string | number>;
+
+export type Data = DataItem[];
+
+export const testData: Data = [
   {
-    name: "",
+    name: "point_1",
+    k: "",
     x: 4.31,
     y: 0.95,
     color: "red",
