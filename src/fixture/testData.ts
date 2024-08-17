@@ -5,10 +5,6 @@ export const testColumns = [
   { value: "department", required: true, unique: true, width: 180 },
 ];
 
-const testColumnsForType = [...testColumns] as const;
-
-export type Columns = typeof testColumnsForType;
-
 type ColumnNames = (typeof testColumns)[number]["value"];
 
 type DataItem = Record<ColumnNames, string | number>;
