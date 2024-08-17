@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Box } from "@kuma-ui/core";
 import type { Columns, Data } from "../types/types";
 
 import ColumnHeader from "./ColumnHeader";
@@ -30,8 +31,13 @@ export interface TableProps {
    */
   border?: string;
   /**
-   * margin
+   * gap
    * @default 4
+   */
+  gap?: number | string;
+  /**
+   * margin
+   * @default 0
    */
   margin?: number | string;
   /**
@@ -48,32 +54,35 @@ const Table: React.FC<TableProps> = (props) => {
     justifyContent = "center",
     backgroundColor = "#F5F5F5",
     border = "1px solid gray",
-    margin = 4,
+    gap = 4,
+    margin = 20,
     padding = 0,
   } = props;
   const [tableColumns, setColumns] = useState<Columns>(columns);
   const [tableData, setData] = useState<Data>(data);
   return (
     <>
-      <ColumnHeader
-        columns={tableColumns}
-        justifyContent={justifyContent}
-        backgroundColor={backgroundColor}
-        border={border}
-        margin={margin}
-        padding={padding}
-        onInputHandler={setColumns}
-      />
-      <ColumnContents
-        columns={tableColumns}
-        data={tableData}
-        justifyContent={justifyContent}
-        backgroundColor={backgroundColor}
-        border={border}
-        margin={margin}
-        padding={padding}
-        onInputHandler={setData}
-      />
+      <Box m={margin}>
+        <ColumnHeader
+          columns={tableColumns}
+          justifyContent={justifyContent}
+          backgroundColor={backgroundColor}
+          border={border}
+          margin={gap}
+          padding={padding}
+          onInputHandler={setColumns}
+        />
+        <ColumnContents
+          columns={tableColumns}
+          data={tableData}
+          justifyContent={justifyContent}
+          backgroundColor={backgroundColor}
+          border={border}
+          margin={gap}
+          padding={padding}
+          onInputHandler={setData}
+        />
+      </Box>
     </>
   );
 };
