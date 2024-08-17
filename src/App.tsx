@@ -5,14 +5,14 @@ import { useState } from "react";
 
 import ColumnHeader from "./components/ColumnHeader";
 import ColumnContents from "./components/ColumnContents";
+import Table from "./components/Table";
 
 function App() {
   const [columns, setColumns] = useState<Columns>(testColumns);
   const [data, setData] = useState<Data>(testData);
   return (
     <>
-      <ColumnHeader columns={columns} onInputHandler={setColumns} />
-      <ColumnContents columns={columns} data={data} onInputHandler={setData} />
+      <Table columns={columns} data={data} margin={24} />
     </>
   );
 }
