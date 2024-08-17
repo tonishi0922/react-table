@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
-import { Flex, Box } from "@kuma-ui/core";
+import { Flex, Box, styled } from "@kuma-ui/core";
 import type { Columns } from "../types/types";
+import AddIcon from "@mui/icons-material/Add";
+import { keyframes } from "@emotion/react";
 
 interface ColumnHeaderProps {
   /**
@@ -38,6 +40,12 @@ interface ColumnHeaderProps {
    */
   onInputHandler: Dispatch<SetStateAction<Columns>>;
 }
+
+const IconStyleContainer = styled("div")`
+  position: relative;
+  height: "24px";
+`;
+
 const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
   const {
     columns,
@@ -54,6 +62,26 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
         {columns.map((column, index) => {
           return (
             <div key={index}>
+              <IconStyleContainer>
+                {/* <IconStyle> */}
+                <AddIcon
+                  style={index === 0 ? { display: "none" } : {}}
+                  sx={{
+                    position: "absolute",
+                    left: "-12px",
+                    top: "-20px",
+                    opacity: 0,
+                    cursor: "pointer",
+                    transitionProperty: "opacity",
+                    transitionDuration: "0.2s",
+                    ":hover": {
+                      opacity: 1,
+                    },
+                    // animation: {sh}
+                  }}
+                />
+                {/* </IconStyle> */}
+              </IconStyleContainer>
               <Box
                 width={column.width}
                 display={"flex"}
