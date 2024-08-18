@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { Flex, Box } from "@kuma-ui/core";
 import type { Columns, Data } from "../types/types";
-import PlusIcon from "./PlusIcon";
+import PlusIcon from "./PlusIcon/PlusIcon";
 
 interface ColumnContentsProps {
   /**

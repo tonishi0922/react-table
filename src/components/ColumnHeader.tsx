@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { Flex, Box } from "@kuma-ui/core";
 import type { Columns } from "../types/types";
-import PlusIcon from "./PlusIcon";
+import PlusIcon from "./PlusIcon/PlusIcon";
 
 interface ColumnHeaderProps {
   /**
