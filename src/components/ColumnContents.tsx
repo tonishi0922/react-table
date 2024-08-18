@@ -61,10 +61,7 @@ const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
       <div key={itemIndex}>
         <Flex>
           <IconContainer>
-            <AddIcon
-              // style={itemIndex === 0 ? { display: "none" } : {}}
-              sx={rowIconStyle}
-            />
+            <AddIcon sx={rowIconStyle} />
           </IconContainer>
           {columns.map((column, columnIndex) => {
             return (
