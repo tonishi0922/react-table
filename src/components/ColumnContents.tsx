@@ -1,9 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { Flex, Box } from "@kuma-ui/core";
 import type { Columns, Data } from "../types/types";
-import AddIcon from "@mui/icons-material/Add";
-import IconContainer from "./IconContainer";
-import { rowIconStyle } from "./baseStyles";
+import PlusIcon from "./PlusIcon";
 
 interface ColumnContentsProps {
   /**
@@ -60,9 +58,7 @@ const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
     return (
       <div key={itemIndex}>
         <Flex>
-          <IconContainer>
-            <AddIcon sx={rowIconStyle} />
-          </IconContainer>
+          <PlusIcon direction="row" />
           {columns.map((column, columnIndex) => {
             return (
               <Box
