@@ -62,7 +62,6 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
     };
     columns.splice(index, 0, inserColumn);
     const newColumns = [...columns];
-    console.log(newColumns);
     setLocalColumns(newColumns);
   };
   return (
