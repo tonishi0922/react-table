@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
-import { Flex, Box, styled } from "@kuma-ui/core";
+import { Flex, Box } from "@kuma-ui/core";
 import type { Columns } from "../types/types";
 import AddIcon from "@mui/icons-material/Add";
 import IconContainer from "./IconContainer";
-import { IconStyle } from "./baseStyles";
+import { columnIconStyle } from "./baseStyles";
 
 interface ColumnHeaderProps {
   /**
@@ -61,7 +61,7 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
               <IconContainer>
                 <AddIcon
                   style={index === 0 ? { display: "none" } : {}}
-                  sx={IconStyle}
+                  sx={columnIconStyle}
                 />
               </IconContainer>
               <Box

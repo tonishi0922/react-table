@@ -1,7 +1,5 @@
-export const IconStyle = {
+const baseIconStyle = {
   position: "absolute",
-  left: "-12px",
-  top: "-20px",
   opacity: 0,
   cursor: "pointer",
   transitionProperty: "opacity",
@@ -9,4 +7,16 @@ export const IconStyle = {
   ":hover": {
     opacity: 1,
   },
+};
+
+export const columnIconStyle = {
+  top: "-20px",
+  left: "-12px",
+  ...baseIconStyle,
+};
+
+export const rowIconStyle = {
+  top: "-12px",
+  left: "-20px",
+  ...baseIconStyle,
 };

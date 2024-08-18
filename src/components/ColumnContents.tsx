@@ -3,7 +3,7 @@ import { Flex, Box } from "@kuma-ui/core";
 import type { Columns, Data } from "../types/types";
 import AddIcon from "@mui/icons-material/Add";
 import IconContainer from "./IconContainer";
-import { IconStyle } from "./baseStyles";
+import { rowIconStyle } from "./baseStyles";
 
 interface ColumnContentsProps {
   /**
@@ -57,14 +57,13 @@ const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
     onInputHandler,
   } = props;
   return data.map((item, itemIndex) => {
-    console.log(itemIndex);
     return (
       <div key={itemIndex}>
         <Flex>
           <IconContainer>
             <AddIcon
               // style={itemIndex === 0 ? { display: "none" } : {}}
-              sx={IconStyle}
+              sx={rowIconStyle}
             />
           </IconContainer>
           {columns.map((column, columnIndex) => {
