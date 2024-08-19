@@ -2,17 +2,9 @@ import { Dispatch, SetStateAction, useContext } from "react";
 import { Flex, Box } from "@kuma-ui/core";
 import type { Columns } from "../types/types";
 import PlusIcon from "./PlusIcon/PlusIcon";
-import { columnDataContext } from "./provider/ColumnDataProvider";
+import { useColumns, setColumnContext } from "./provider/ColumnDataProvider";
 
 interface ColumnHeaderProps {
-  /**
-   * 1行目のカラムに関する型定義
-   * value: 各カラムに出力される文字列
-   * required: 空を許容するか
-   * unique: 重複を許容するか
-   * width: 幅
-   */
-  columns: Columns;
   /**
    * 表示方法: 左寄せ | 中央 | 右寄せ
    */
@@ -43,7 +35,6 @@ interface ColumnHeaderProps {
 
 const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
   const {
-    columns,
     justifyContent = "center",
     backgroundColor = "#F5F5F5",
     border = "1px solid gray",
@@ -51,7 +42,8 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
     padding = 0,
     onInputHandler,
   } = props;
-  const { setColumns } = useContext(columnDataContext);
+  const columns = useColumns();
+  const setColumns = useContext(setColumnContext);
   const addColumn = (index: number) => {
     const id = Math.random() as unknown as string;
     const inserColumn = {

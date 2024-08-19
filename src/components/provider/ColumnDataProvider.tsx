@@ -1,38 +1,42 @@
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useContext,
+  useState,
+} from "react";
 import { Columns } from "../../types/types";
 import { defaultColumnData } from "../../lib/util";
 
-interface ColumnDataState {
-  columns: Columns;
-  setColumns: Dispatch<SetStateAction<Columns>>;
-}
-
 interface ColumnDataProps {
   /**
-   * ColumDataProviderが受け取る初期値
-   * 未定義の場合デフォルトで
-   * [{ value: "", required: true, unique: true, width: 100 }]
-   * が出力される
+   * 1行目のカラムに関する型定義
+   * value: 各カラムに出力される文字列
+   * required: 空を許容するか
+   * unique: 重複を許容するか
+   * width: 幅
    */
-  provideColumns: Columns;
+  columns: Columns;
   /**
    * children
    */
   children: React.ReactNode;
 }
 
-export const columnDataContext = createContext<ColumnDataState>({
-  columns: defaultColumnData,
-  setColumns: () => undefined,
-});
+const columnContext = createContext<Columns>(defaultColumnData);
+export const useColumns = () => useContext(columnContext);
+export const setColumnContext = createContext<
+  Dispatch<SetStateAction<Columns>>
+>(() => undefined);
 
 const ColumnDataProvider: React.FC<ColumnDataProps> = (props) => {
-  const { children, provideColumns } = props;
-  const [columns, setColumns] = useState<Columns>(provideColumns);
+  const [columns, setColumns] = useState<Columns>(props.columns);
   return (
-    <columnDataContext.Provider value={{ columns, setColumns }}>
-      {children}
-    </columnDataContext.Provider>
+    <columnContext.Provider value={columns}>
+      <setColumnContext.Provider value={setColumns}>
+        {props.children}
+      </setColumnContext.Provider>
+    </columnContext.Provider>
   );
 };
 

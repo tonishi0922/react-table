@@ -64,10 +64,9 @@ const Table: React.FC<TableProps> = (props) => {
   const [tableData, setData] = useState<Data>(data);
   return (
     <>
-      <ColumnDataProvider provideColumns={columns}>
+      <ColumnDataProvider columns={columns}>
         <Box m={margin}>
           <ColumnHeader
-            columns={tableColumns}
             justifyContent={justifyContent}
             backgroundColor={backgroundColor}
             border={border}
