@@ -8,7 +8,16 @@ interface ColumnDataState {
 }
 
 interface ColumnDataProps {
+  /**
+   * ColumDataProviderが受け取る初期値
+   * 未定義の場合デフォルトで
+   * [{ value: "", required: true, unique: true, width: 100 }]
+   * が出力される
+   */
   provideColumns: Columns;
+  /**
+   * children
+   */
   children: React.ReactNode;
 }
 
