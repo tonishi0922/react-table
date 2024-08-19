@@ -1,25 +1,25 @@
 import { Dispatch, SetStateAction, createContext, useState } from "react";
 import { Columns } from "../../types/types";
-
-type ContextColumns = Columns | null;
+import { defaultColumnData } from "../../utils/data";
 
 interface ColumnDataState {
-  columns: ContextColumns;
-  setColumns: Dispatch<SetStateAction<ContextColumns>>;
+  columns: Columns;
+  setColumns: Dispatch<SetStateAction<Columns>>;
 }
 
 interface ColumnDataProps {
+  provideColumns: Columns;
   children: React.ReactNode;
 }
 
-const columnDataContext = createContext<ColumnDataState>({
-  columns: null,
+export const columnDataContext = createContext<ColumnDataState>({
+  columns: defaultColumnData,
   setColumns: () => undefined,
 });
 
 const ColumnDataProvider: React.FC<ColumnDataProps> = (props) => {
-  const { children } = props;
-  const [columns, setColumns] = useState<ContextColumns>(null);
+  const { children, provideColumns } = props;
+  const [columns, setColumns] = useState<Columns>(provideColumns);
   return (
     <columnDataContext.Provider value={{ columns, setColumns }}>
       {children}
