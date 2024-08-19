@@ -1,7 +1,8 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
 import { Flex, Box } from "@kuma-ui/core";
 import type { Columns } from "../types/types";
 import PlusIcon from "./PlusIcon/PlusIcon";
+import { columnDataContext } from "./provider/ColumnDataProvider";
 
 interface ColumnHeaderProps {
   /**
@@ -50,8 +51,7 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
     padding = 0,
     onInputHandler,
   } = props;
-  const [localColumns, setLocalColumns] = useState(columns);
-
+  const { setColumns } = useContext(columnDataContext);
   const addColumn = (index: number) => {
     const id = Math.random() as unknown as string;
     const inserColumn = {
@@ -62,12 +62,12 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
     };
     columns.splice(index, 0, inserColumn);
     const newColumns = [...columns];
-    setLocalColumns(newColumns);
+    setColumns(newColumns);
   };
   return (
     <>
       <Flex>
-        {localColumns.map((column, index) => {
+        {columns.map((column, index) => {
           return (
             <div key={index}>
               <PlusIcon
