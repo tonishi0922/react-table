@@ -1,4 +1,5 @@
 interface Column {
+  id: string | number;
   value: string;
   required?: boolean;
   unique?: boolean;

@@ -47,7 +47,8 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
   const addColumn = (index: number) => {
     const id = Math.random() as unknown as string;
     const inserColumn = {
-      value: id,
+      id: id,
+      value: "",
       required: true,
       unique: true,
       width: 100,

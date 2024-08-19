@@ -1,8 +1,8 @@
 export const testColumns = [
-  { value: "id", required: true, unique: true, width: 180 },
-  { value: "name", required: true, unique: true, width: 100 },
-  { value: "age", required: true, unique: true, width: 100 },
-  { value: "department", required: true, unique: true, width: 180 },
+  { id: 111, value: "id", required: true, unique: true, width: 180 },
+  { id: 112, value: "name", required: true, unique: true, width: 100 },
+  { id: 113, value: "age", required: true, unique: true, width: 100 },
+  { id: 114, value: "department", required: true, unique: true, width: 180 },
 ];
 
 type ColumnNames = (typeof testColumns)[number]["value"];
