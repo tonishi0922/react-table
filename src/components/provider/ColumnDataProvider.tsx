@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, createContext, useState } from "react";
 import { Columns } from "../../types/types";
-import { defaultColumnData } from "../../utils/data";
+import { defaultColumnData } from "../../lib/util";
 
 interface ColumnDataState {
   columns: Columns;
