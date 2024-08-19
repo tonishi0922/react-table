@@ -5,6 +5,8 @@ import type { Columns, Data } from "../types/types";
 import ColumnHeader from "./ColumnHeader";
 import ColumnContents from "./ColumnContents";
 
+import ColumnDataProvider from "./provider/ColumnDataProvider";
+
 export interface TableProps {
   /**
    * 1行目のカラムに関する型定義
@@ -62,27 +64,29 @@ const Table: React.FC<TableProps> = (props) => {
   const [tableData, setData] = useState<Data>(data);
   return (
     <>
-      <Box m={margin}>
-        <ColumnHeader
-          columns={tableColumns}
-          justifyContent={justifyContent}
-          backgroundColor={backgroundColor}
-          border={border}
-          margin={gap}
-          padding={padding}
-          onInputHandler={setColumns}
-        />
-        <ColumnContents
-          columns={tableColumns}
-          data={tableData}
-          justifyContent={justifyContent}
-          backgroundColor={backgroundColor}
-          border={border}
-          margin={gap}
-          padding={padding}
-          onInputHandler={setData}
-        />
-      </Box>
+      <ColumnDataProvider provideColumns={columns}>
+        <Box m={margin}>
+          <ColumnHeader
+            columns={tableColumns}
+            justifyContent={justifyContent}
+            backgroundColor={backgroundColor}
+            border={border}
+            margin={gap}
+            padding={padding}
+            onInputHandler={setColumns}
+          />
+          <ColumnContents
+            columns={tableColumns}
+            data={tableData}
+            justifyContent={justifyContent}
+            backgroundColor={backgroundColor}
+            border={border}
+            margin={gap}
+            padding={padding}
+            onInputHandler={setData}
+          />
+        </Box>
+      </ColumnDataProvider>
     </>
   );
 };
