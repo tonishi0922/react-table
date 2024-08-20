@@ -1,4 +1,4 @@
-interface Column {
+export interface Column {
   id: string | number;
   value: string;
   required?: boolean;
