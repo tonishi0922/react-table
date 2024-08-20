@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import { Columns } from "../../types/types";
-import { defaultColumnData } from "../../lib/util";
+import { defaultColumns } from "../../lib/util";
 
 interface ColumnDataProps {
   /**
@@ -23,7 +23,7 @@ interface ColumnDataProps {
   children: React.ReactNode;
 }
 
-const columnContext = createContext<Columns>(defaultColumnData);
+const columnContext = createContext<Columns>(defaultColumns);
 export const useColumns = () => useContext(columnContext);
 export const setColumnContext = createContext<
   Dispatch<SetStateAction<Columns>>
