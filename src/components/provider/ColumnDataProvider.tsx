@@ -1,10 +1,4 @@
-import {
-  Dispatch,
-  SetStateAction,
-  createContext,
-  useContext,
-  useReducer,
-} from "react";
+import { createContext, useContext, useReducer } from "react";
 import { Columns } from "../../types/types";
 import { defaultColumns } from "../../lib/util";
 import { columnsReducer, ColumnsDispatchContext } from "./ColumnDataReducer";
