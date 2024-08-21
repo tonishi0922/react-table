@@ -3,10 +3,11 @@ import {
   SetStateAction,
   createContext,
   useContext,
-  useState,
+  useReducer,
 } from "react";
 import { Columns } from "../../types/types";
 import { defaultColumns } from "../../lib/util";
+import { columnsReducer, ColumnsDispatchContext } from "./ColumnDataReducer";
 
 interface ColumnDataProps {
   /**
@@ -25,17 +26,14 @@ interface ColumnDataProps {
 
 const columnContext = createContext<Columns>(defaultColumns);
 export const useColumns = () => useContext(columnContext);
-export const setColumnContext = createContext<
-  Dispatch<SetStateAction<Columns>>
->(() => undefined);
 
 const ColumnDataProvider: React.FC<ColumnDataProps> = (props) => {
-  const [columns, setColumns] = useState<Columns>(props.columns);
+  const [columns, columnsDispatch] = useReducer(columnsReducer, props.columns);
   return (
     <columnContext.Provider value={columns}>
-      <setColumnContext.Provider value={setColumns}>
+      <ColumnsDispatchContext.Provider value={columnsDispatch}>
         {props.children}
-      </setColumnContext.Provider>
+      </ColumnsDispatchContext.Provider>
     </columnContext.Provider>
   );
 };
