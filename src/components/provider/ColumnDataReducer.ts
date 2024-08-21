@@ -24,5 +24,7 @@ export const columnsReducer = (columns: Columns, action: Action): Columns => {
   return columns;
 };
 
-const ColumnsDispatchContext = createContext<Dispatch<Action>>(() => undefined);
+export const ColumnsDispatchContext = createContext<Dispatch<Action>>(
+  () => undefined
+);
 export const useColumnsDispatch = () => useContext(ColumnsDispatchContext);
