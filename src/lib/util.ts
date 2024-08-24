@@ -7,3 +7,5 @@ export const defaultColumn = {
 };
 
 export const defaultColumns = [defaultColumn];
+
+export const defaultData = [{}];
