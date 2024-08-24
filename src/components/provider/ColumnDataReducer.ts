@@ -1,3 +1,4 @@
+/* eslint react-refresh/only-export-components: 0 */
 import { Column, Columns } from "../../types/types";
 import { defaultColumn } from "../../lib/util";
 import { Dispatch, createContext, useContext } from "react";
@@ -10,16 +11,18 @@ export type Action =
 export const columnsReducer = (columns: Columns, action: Action): Columns => {
   const { type, payload } = action;
   switch (type) {
-    case "ADD":
+    case "ADD": {
       const index = payload;
       const id = Math.random() as unknown as string;
       const insertColumn: Column = { ...defaultColumn, id };
-      console.log(insertColumn, "insertColumn");
       return [
         ...columns.slice(0, index),
         insertColumn,
         ...columns.slice(index),
       ];
+    }
+    default:
+      throw new Error("Invalid action");
   }
   return columns;
 };

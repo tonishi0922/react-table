@@ -1,3 +1,4 @@
+/* eslint react-refresh/only-export-components: 0 */
 import { createContext, useContext, useReducer } from "react";
 import { Columns } from "../../types/types";
 import { defaultColumns } from "../../lib/util";
