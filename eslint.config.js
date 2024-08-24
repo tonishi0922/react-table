@@ -22,5 +22,11 @@ export default tseslint.config({
       "warn",
       { allowConstantExport: true },
     ],
+    "no-implicit-coercion": [
+      "warn",
+      {
+        boolean: true,
+      },
+    ],
   },
 });
