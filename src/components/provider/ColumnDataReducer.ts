@@ -24,7 +24,6 @@ export const columnsReducer = (columns: Columns, action: Action): Columns => {
     default:
       throw new Error("Invalid action");
   }
-  return columns;
 };
 
 export const ColumnsDispatchContext = createContext<Dispatch<Action>>(

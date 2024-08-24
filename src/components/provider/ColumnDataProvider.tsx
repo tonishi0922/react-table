@@ -1,7 +1,6 @@
-/* eslint react-refresh/only-export-components: 0 */
-import { createContext, useContext, useReducer } from "react";
+import { useReducer } from "react";
 import { Columns } from "../../types/types";
-import { defaultColumns } from "../../lib/util";
+import { columnContext } from "./ColumnDataContext";
 import { columnsReducer, ColumnsDispatchContext } from "./ColumnDataReducer";
 
 interface ColumnDataProps {
@@ -18,9 +17,6 @@ interface ColumnDataProps {
    */
   children: React.ReactNode;
 }
-
-const columnContext = createContext<Columns>(defaultColumns);
-export const useColumns = () => useContext(columnContext);
 
 const ColumnDataProvider: React.FC<ColumnDataProps> = (props) => {
   const [columns, columnsDispatch] = useReducer(columnsReducer, props.columns);

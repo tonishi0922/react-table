@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { Flex, Box } from "@kuma-ui/core";
 import type { Columns } from "../types/types";
 import PlusIcon from "./PlusIcon/PlusIcon";
-import { useColumns } from "./provider/ColumnDataProvider";
+import { useColumns } from "./provider/ColumnDataContext";
 import { useColumnsDispatch } from "./provider/ColumnDataReducer";
 
 interface ColumnHeaderProps {
