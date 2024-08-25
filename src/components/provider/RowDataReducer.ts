@@ -8,10 +8,10 @@ export type Action =
   | { type: "DELETE"; payload: Data };
 
 export const dataReducer = (data: Data, action: Action) => {
+  const columns = useColumns();
   const { type, payload } = action;
   switch (type) {
     case "ADD": {
-      const columns = useColumns();
       const insertRowData: DataItem = columns.reduce((acc, column) => {
         acc[column.value] = "";
         return acc;

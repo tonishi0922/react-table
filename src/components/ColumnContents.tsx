@@ -60,40 +60,42 @@ const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
   const data = useData();
   const addData = useDataDispatch();
 
-  return data.map((item, itemIndex) => {
-    return (
-      <div key={itemIndex}>
-        <Flex>
-          <PlusIcon
-            direction="row"
-            onClick={() => addData({ type: "ADD", payload: itemIndex })}
-          />
-          {columns.map((column, columnIndex) => {
-            return (
-              <Box
-                key={columnIndex}
-                width={column.width}
-                display={"flex"}
-                justifyContent={justifyContent}
-                bg={columnIndex === 0 ? backgroundColor : ""}
-                m={margin}
-                p={padding}
-                border={border}
-                onInput={(e: React.ChangeEvent<HTMLDivElement>) => {
-                  const tmpData = [...data];
-                  tmpData[itemIndex][column.value] = e.target.innerHTML;
-                  onInputHandler(tmpData);
-                }}
-                contentEditable={true}
-                suppressContentEditableWarning={true}
-                dangerouslySetInnerHTML={{ __html: item[column.value] }}
-              ></Box>
-            );
-          })}
-        </Flex>
-      </div>
-    );
-  });
+  return (
+    <>
+      {data.map((item, itemIndex) => {
+        return (
+          <Flex key={itemIndex}>
+            <PlusIcon
+              direction="row"
+              onClick={() => addData({ type: "ADD", payload: itemIndex })}
+            />
+            {columns.map((column, columnIndex) => {
+              return (
+                <Box
+                  key={columnIndex}
+                  width={column.width}
+                  display={"flex"}
+                  justifyContent={justifyContent}
+                  bg={columnIndex === 0 ? backgroundColor : ""}
+                  m={margin}
+                  p={padding}
+                  border={border}
+                  onInput={(e: React.ChangeEvent<HTMLDivElement>) => {
+                    const tmpData = [...data];
+                    tmpData[itemIndex][column.value] = e.target.innerHTML;
+                    onInputHandler(tmpData);
+                  }}
+                  contentEditable={true}
+                  suppressContentEditableWarning={true}
+                  dangerouslySetInnerHTML={{ __html: item[column.value] }}
+                ></Box>
+              );
+            })}
+          </Flex>
+        );
+      })}
+    </>
+  );
 };
 
 export default ColumnContents;
