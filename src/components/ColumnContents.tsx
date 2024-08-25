@@ -48,7 +48,6 @@ interface ColumnContentsProps {
 const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
   const {
     columns,
-    data,
     justifyContent = "center",
     backgroundColor = "#F5F5F5",
     border = "1px solid gray",
@@ -56,11 +55,19 @@ const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
     padding = 0,
     onInputHandler,
   } = props;
+
+  // TODO: typeからdataを削除する
+  const data = useData();
+  const addData = useDataDispatch();
+
   return data.map((item, itemIndex) => {
     return (
       <div key={itemIndex}>
         <Flex>
-          <PlusIcon direction="row" onClick={() => console.log(itemIndex)} />
+          <PlusIcon
+            direction="row"
+            onClick={() => addData({ type: "ADD", payload: itemIndex })}
+          />
           {columns.map((column, columnIndex) => {
             return (
               <Box
