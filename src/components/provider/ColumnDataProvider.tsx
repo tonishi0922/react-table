@@ -1,7 +1,9 @@
 import { useReducer } from "react";
-import { Columns } from "../../types/types";
+import { Columns, Data } from "../../types/types";
 import { columnContext } from "./ColumnDataContext";
 import { columnsReducer, ColumnsDispatchContext } from "./ColumnDataReducer";
+import { dataContext } from "./RowDataContext";
+import { dataReducer, DataDispatchContext } from "./RowDataReducer";
 
 interface ColumnDataProps {
   /**
@@ -15,16 +17,28 @@ interface ColumnDataProps {
   /**
    * children
    */
+  /**
+   * カラム以外に表示されるコンテンツ
+   */
+  data: Data;
+  /**
+   * Provider配下のchildren
+   */
   children: React.ReactNode;
 }
 
 const ColumnDataProvider: React.FC<ColumnDataProps> = (props) => {
   const [columns, columnsDispatch] = useReducer(columnsReducer, props.columns);
+  const [data, dataDispatch] = useReducer(dataReducer, props.data);
   return (
     <columnContext.Provider value={columns}>
-      <ColumnsDispatchContext.Provider value={columnsDispatch}>
-        {props.children}
-      </ColumnsDispatchContext.Provider>
+      <dataContext.Provider value={data}>
+        <ColumnsDispatchContext.Provider value={columnsDispatch}>
+          <DataDispatchContext.Provider value={dataDispatch}>
+            {props.children}
+          </DataDispatchContext.Provider>
+        </ColumnsDispatchContext.Provider>
+      </dataContext.Provider>
     </columnContext.Provider>
   );
 };
