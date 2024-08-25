@@ -10,6 +10,10 @@ export type Columns = Column[];
 
 type ColumnNames = Columns[number]["value"];
 
-type DataItem = Record<ColumnNames, string | number>;
+// export type DataItem = Record<ColumnNames, string | number>;
+
+export type DataItem = {
+  [K in Column["value"]]: string | number;
+};
 
 export type Data = DataItem[];
