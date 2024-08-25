@@ -8,12 +8,13 @@ export interface Column {
 
 export type Columns = Column[];
 
-type ColumnNames = Columns[number]["value"];
-
-// export type DataItem = Record<ColumnNames, string | number>;
-
 export type DataItem = {
   [K in Column["value"]]: string | number;
 };
 
 export type Data = DataItem[];
+
+export interface TableData {
+  columns: Columns;
+  data: Data;
+}
