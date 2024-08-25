@@ -2,6 +2,8 @@ import { Dispatch, SetStateAction } from "react";
 import { Flex, Box } from "@kuma-ui/core";
 import type { Columns, Data } from "../types/types";
 import PlusIcon from "./PlusIcon/PlusIcon";
+import { useData } from "./provider/RowDataContext";
+import { useDataDispatch } from "./provider/RowDataReducer";
 
 interface ColumnContentsProps {
   /**
@@ -58,7 +60,7 @@ const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
     return (
       <div key={itemIndex}>
         <Flex>
-          <PlusIcon direction="row" />
+          <PlusIcon direction="row" onClick={() => console.log(itemIndex)} />
           {columns.map((column, columnIndex) => {
             return (
               <Box
