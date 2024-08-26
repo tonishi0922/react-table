@@ -2,8 +2,8 @@ import { Dispatch, SetStateAction } from "react";
 import { Flex, Box } from "@kuma-ui/core";
 import type { Columns, Data } from "../types/types";
 import PlusIcon from "./PlusIcon/PlusIcon";
-import { useData } from "./provider/RowDataContext";
-import { useDataDispatch } from "./provider/RowDataReducer";
+import { useTableData } from "./provider/TableDataContext";
+import { useTableDispatch } from "./provider/TableDataReducer";
 
 interface ColumnContentsProps {
   /**
@@ -57,8 +57,9 @@ const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
   } = props;
 
   // TODO: typeからdataを削除する
-  const data = useData();
-  const addData = useDataDispatch();
+  const tableData = useTableData();
+  const addRowData = useTableDispatch();
+  const data = tableData.data;
 
   return (
     <>
@@ -67,7 +68,9 @@ const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
           <Flex key={itemIndex}>
             <PlusIcon
               direction="row"
-              onClick={() => addData({ type: "ADD", payload: itemIndex })}
+              onClick={() =>
+                addRowData({ type: "ADD_DATA", payload: itemIndex })
+              }
             />
             {columns.map((column, columnIndex) => {
               return (

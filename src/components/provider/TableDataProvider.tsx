@@ -3,7 +3,7 @@ import { TableData } from "../../types/types";
 import { tableDataContext } from "./TableDataContext";
 import { tableDataReducer, TableDataDispatchContext } from "./TableDataReducer";
 
-interface ColumnDataProps {
+interface TableDataProps {
   /**
    * @type TableData
    * 表形式のデータを表現するインターフェース
@@ -16,7 +16,7 @@ interface ColumnDataProps {
   children: React.ReactNode;
 }
 
-const ColumnDataProvider: React.FC<ColumnDataProps> = (props) => {
+const TableDataProvider: React.FC<TableDataProps> = (props) => {
   const [tableData, tableDataDispatch] = useReducer(
     tableDataReducer,
     props.tableData
@@ -30,4 +30,4 @@ const ColumnDataProvider: React.FC<ColumnDataProps> = (props) => {
   );
 };
 
-export default ColumnDataProvider;
+export default TableDataProvider;

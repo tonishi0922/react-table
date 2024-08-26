@@ -2,8 +2,8 @@ import { Dispatch, SetStateAction } from "react";
 import { Flex, Box } from "@kuma-ui/core";
 import type { Columns } from "../types/types";
 import PlusIcon from "./PlusIcon/PlusIcon";
-import { useColumns } from "./provider/ColumnDataContext";
-import { useColumnsDispatch } from "./provider/ColumnDataReducer";
+import { useTableData } from "./provider/TableDataContext";
+import { useTableDispatch } from "./provider/TableDataReducer";
 
 interface ColumnHeaderProps {
   /**
@@ -43,8 +43,9 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
     padding = 0,
     onInputHandler,
   } = props;
-  const columns = useColumns();
-  const addColumns = useColumnsDispatch();
+  const tableData = useTableData();
+  const addColumnData = useTableDispatch();
+  const columns = tableData.columns;
   return (
     <>
       <Flex>
@@ -54,7 +55,9 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
               <PlusIcon
                 hideIcon={index === 0}
                 direction="column"
-                onClick={() => addColumns({ type: "ADD", payload: index })}
+                onClick={() =>
+                  addColumnData({ type: "ADD_COLUMN", payload: index })
+                }
               />
               <Box
                 width={column.width}
