@@ -31,7 +31,7 @@ interface ColumnHeaderProps {
   /**
    * box編集時のイベントハンドラ
    */
-  onInputHandler: Dispatch<SetStateAction<Columns>>;
+  onInputHandler?: Dispatch<SetStateAction<Columns>>;
 }
 
 const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
@@ -41,7 +41,7 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
     border = "1px solid gray",
     margin = 4,
     padding = 0,
-    onInputHandler,
+    onInputHandler = () => undefined,
   } = props;
   const tableData = useTableData();
   const addColumnData = useTableDispatch();

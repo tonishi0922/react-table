@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Box } from "@kuma-ui/core";
 import type { Columns, Data, TableData } from "../types/types";
 
@@ -64,8 +63,6 @@ const Table: React.FC<TableProps> = (props) => {
     columns,
     data,
   };
-  const [tableColumns, setColumns] = useState<Columns>(columns);
-  const [ttableData, setData] = useState<Data>(data);
   return (
     <>
       <TableDataProvider tableData={tableData}>
@@ -76,17 +73,13 @@ const Table: React.FC<TableProps> = (props) => {
             border={border}
             margin={gap}
             padding={padding}
-            onInputHandler={setColumns}
           />
           <ColumnContents
-            columns={tableColumns}
-            data={ttableData}
             justifyContent={justifyContent}
             backgroundColor={backgroundColor}
             border={border}
             margin={gap}
             padding={padding}
-            onInputHandler={setData}
           />
         </Box>
       </TableDataProvider>
