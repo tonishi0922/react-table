@@ -40,7 +40,6 @@ const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
     onInputHandler = () => undefined,
   } = props;
 
-  // TODO: typeからdataを削除する
   const tableData = useTableData();
   const addRowData = useTableDispatch();
   const data = tableData.data;
