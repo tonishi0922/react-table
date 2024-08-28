@@ -44,7 +44,7 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
     onInputHandler = () => undefined,
   } = props;
   const tableData = useTableData();
-  const addColumnData = useTableDispatch();
+  const dispatchColumnData = useTableDispatch();
   const columns = tableData.columns;
   return (
     <>
@@ -56,7 +56,7 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
                 hideIcon={index === 0}
                 direction="column"
                 onClick={() =>
-                  addColumnData({ type: "ADD_COLUMN", payload: index })
+                  dispatchColumnData({ type: "ADD_COLUMN", payload: index })
                 }
               />
               <Box
