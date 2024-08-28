@@ -6,10 +6,16 @@ type Index = number;
 
 export type Action =
   | { type: "ADD_COLUMN"; payload: Index }
-  | { type: "SET_COLUMN"; payload: { index: Index; value: string } }
+  | {
+      type: "SET_COLUMN";
+      payload: { index: Index; value: string; innerHtml: string };
+    }
   | { type: "DELETE_COLUMN"; payload: TableData }
   | { type: "ADD_DATA"; payload: Index }
-  | { type: "SET_DATA"; payload: { index: Index; value: string } }
+  | {
+      type: "SET_DATA";
+      payload: { index: Index; value: string; innerHtml: string };
+    }
   | { type: "DELETE_DARA"; payload: TableData };
 
 export const tableDataReducer = (
@@ -49,16 +55,10 @@ export const tableDataReducer = (
       return { columns, data: newData };
     }
     case "SET_DATA": {
-      const { index, value } = payload;
-      const insertRowData: DataItem = columns.reduce((acc, column) => {
-        acc[column.value] = "";
-        return acc;
-      }, {} as DataItem);
-      const newData = [
-        ...data.slice(0, index),
-        insertRowData,
-        ...data.slice(index),
-      ];
+      console.log(data);
+      const { index, value, innerHtml } = payload;
+      const newData = [...data];
+      newData[index][value] = innerHtml;
       return { columns, data: newData };
     }
     default:
