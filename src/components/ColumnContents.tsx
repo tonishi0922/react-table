@@ -68,9 +68,14 @@ const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
                   p={padding}
                   border={border}
                   onInput={(e: React.ChangeEvent<HTMLDivElement>) => {
-                    const tmpData = [...data];
-                    tmpData[itemIndex][column.value] = e.target.innerHTML;
-                    onInputHandler(tmpData);
+                    dispatchRowData({
+                      type: "SET_DATA",
+                      payload: {
+                        index: itemIndex,
+                        value: column.value,
+                        innerHtml: e.target.innerHTML,
+                      },
+                    });
                   }}
                   contentEditable={true}
                   suppressContentEditableWarning={true}
