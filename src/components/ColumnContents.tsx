@@ -41,9 +41,9 @@ const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
   } = props;
 
   const tableData = useTableData();
-  const addRowData = useTableDispatch();
   const data = tableData.data;
   const columns = tableData.columns;
+  const dispatchRowData = useTableDispatch();
 
   return (
     <>
@@ -53,13 +53,13 @@ const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
             <PlusIcon
               direction="row"
               onClick={() =>
-                addRowData({ type: "ADD_DATA", payload: itemIndex })
+                dispatchRowData({ type: "ADD_DATA", payload: itemIndex })
               }
             />
             {columns.map((column, columnIndex) => {
               return (
                 <Box
-                  key={columnIndex}
+                  key={column.id}
                   width={column.width}
                   display={"flex"}
                   justifyContent={justifyContent}
