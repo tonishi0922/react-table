@@ -16,7 +16,7 @@ export type Action =
       type: "SET_DATA";
       payload: { index: Index; value: string; innerHtml: string };
     }
-  | { type: "DELETE_DARA"; payload: TableData };
+  | { type: "DELETE_DATA"; payload: TableData };
 
 export const tableDataReducer = (
   tableData: TableData,
