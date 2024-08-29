@@ -37,7 +37,6 @@ const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
     border = "1px solid gray",
     margin = 4,
     padding = 0,
-    onInputHandler = () => undefined,
   } = props;
 
   const tableData = useTableData();
