@@ -1,6 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
 import { Flex, Box } from "@kuma-ui/core";
-import type { Columns } from "../types/types";
 import PlusIcon from "./PlusIcon/PlusIcon";
 import { useTableData } from "./provider/TableDataContext";
 import { useTableDispatch } from "./provider/TableDataReducer";
@@ -31,7 +29,7 @@ interface ColumnHeaderProps {
   /**
    * box編集時のイベントハンドラ
    */
-  onInputHandler?: Dispatch<SetStateAction<Columns>>;
+  onInputHandler?: () => void;
 }
 
 const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
@@ -41,7 +39,6 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
     border = "1px solid gray",
     margin = 4,
     padding = 0,
-    onInputHandler = () => undefined,
   } = props;
   const tableData = useTableData();
   const dispatchColumnData = useTableDispatch();
@@ -68,9 +65,10 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = (props) => {
                 m={margin}
                 p={padding}
                 onInput={(e: React.ChangeEvent<HTMLDivElement>) => {
-                  const tmpColums = [...columns];
-                  tmpColums[index]["value"] = e.target.innerHTML;
-                  onInputHandler(tmpColums);
+                  dispatchColumnData({
+                    type: "SET_COLUMN",
+                    payload: { index: index, innerHtml: e.target.innerHTML },
+                  });
                 }}
                 contentEditable={true}
                 suppressContentEditableWarning={true}

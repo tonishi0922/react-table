@@ -1,6 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
 import { Flex, Box } from "@kuma-ui/core";
-import type { Data } from "../types/types";
 import PlusIcon from "./PlusIcon/PlusIcon";
 import { useTableData } from "./provider/TableDataContext";
 import { useTableDispatch } from "./provider/TableDataReducer";
@@ -28,7 +26,7 @@ interface ColumnContentsProps {
   /**
    * box編集時のイベントハンドラ
    */
-  onInputHandler?: Dispatch<SetStateAction<Data>>;
+  onInputHandler?: () => void;
 }
 const ColumnContents: React.FC<ColumnContentsProps> = (props) => {
   const {
