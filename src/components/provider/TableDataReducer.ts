@@ -8,7 +8,7 @@ export type Action =
   | { type: "ADD_COLUMN"; payload: Index }
   | {
       type: "SET_COLUMN";
-      payload: { index: Index; value: string; innerHtml: string };
+      payload: { index: Index; innerHtml: string };
     }
   | { type: "DELETE_COLUMN"; payload: TableData }
   | { type: "ADD_DATA"; payload: Index }
@@ -40,13 +40,18 @@ export const tableDataReducer = (
       });
       return { columns: newColumns, data: insertColumnRowData };
     }
+    case "SET_COLUMN": {
+      const { index, innerHtml } = payload;
+      const newColumns = [...columns];
+      newColumns[index]["value"] = innerHtml;
+      return { columns: newColumns, data };
+    }
     case "ADD_DATA": {
       const index = payload;
       const insertRowData: DataItem = columns.reduce((acc, column) => {
         acc[column.value] = "";
         return acc;
       }, {} as DataItem);
-      console.log(data);
       const newData = [
         ...data.slice(0, index),
         insertRowData,
@@ -55,7 +60,6 @@ export const tableDataReducer = (
       return { columns, data: newData };
     }
     case "SET_DATA": {
-      console.log(data);
       const { index, value, innerHtml } = payload;
       const newData = [...data];
       newData[index][value] = innerHtml;
